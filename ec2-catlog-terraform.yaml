@@ -1,11 +1,11 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: sagar
+  name: pavan
   title: Backstage automation
   description: creating ec2 using backstage and terraform.
 spec:
-  owner: guest
+  owner: DaggupatiPavan
   type: service
 
   parameters:
