@@ -10,6 +10,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        repository: 'https://github.com/DaggupatiPavan/backstage-templates.git'
+        repository: 'DaggupatiPavan/backstage-templates'
         # token: ${ secrets.gitlab-syam }
         ref: 'main'
