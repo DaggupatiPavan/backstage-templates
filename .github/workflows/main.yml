@@ -1,0 +1,15 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        repository: 'https://github.com/NAGAVENKATASAIDURGA/paloalto.git'
+        token: ${ secrets.gitlab-syam }
+        ref: 'paloalto'
