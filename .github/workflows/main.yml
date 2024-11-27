@@ -11,5 +11,5 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: 'https://github.com/NAGAVENKATASAIDURGA/paloalto.git'
-        token: ${ secrets.gitlab-syam }
+        # token: ${ secrets.gitlab-syam }
         ref: 'paloalto'
