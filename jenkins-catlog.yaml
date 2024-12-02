@@ -4,7 +4,7 @@ metadata:
   name: 'jenkins'
   description: 'a description'
   annotations:
-    jenkins.io/job-full-name: 'Terraform/aws-infra' # use this instead
+    jenkins.io/job-full-name: "ecocode-python" # use this instead
 
 spec:
   type: service
