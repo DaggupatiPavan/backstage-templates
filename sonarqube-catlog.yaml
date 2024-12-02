@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 'sonarQube'
+  description: 'sonarQube connection'
+  annotations:
+    sonarqube.org/project-key: security 
+spec:
+  type: service
+  lifecycle: experimental
+  owner: DaggupatiPavan 
