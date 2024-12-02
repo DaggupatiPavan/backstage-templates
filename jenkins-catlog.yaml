@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 'tcs'
+  description: 'a description'
+  annotations:
+    jenkins.io/job-full-name: 'Terraform/aws-infra' # use this instead
+
+spec:
+  type: service
+  lifecycle: experimental
+  owner: DaggupatiPavan
