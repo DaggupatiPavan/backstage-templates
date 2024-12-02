@@ -4,7 +4,7 @@ metadata:
   name: 'sonarQube'
   description: 'sonarQube connection'
   annotations:
-    sonarqube.org/project-key: "security"
+    sonarqube.org/project-key: [security]
 spec:
   type: service
   lifecycle: experimental
