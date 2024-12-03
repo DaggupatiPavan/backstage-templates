@@ -4,7 +4,7 @@ metadata:
   name: 'sonarQube'
   description: 'sonarQube connection'
   annotations:
-    sonarqube.org/project-key: 'enc-dec'
+    sonarqube.org/project-key: 'localhost:9000/enc-dec'
 spec:
   type: service
   lifecycle: experimental
