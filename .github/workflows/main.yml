@@ -1,25 +1,65 @@
-name: CI/CD Pipeline
-on:
-  push:
-    branches:
-    - main
+# name: CI/CD Pipeline
+# on:
+#   push:
+#     branches:
+#     - main
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+#       with:
+#         repository: 'DaggupatiPavan/backstage-templates'
+#         # token: ${ secrets.gitlab-syam }
+#         ref: 'main'
+#     - name: Build Application
+#       uses: DaggupatiPavan/custom-action@v1
+#       id: build
+#       with:
+#         command: 'npm run build'
+        
+#     - name: Use Build Output
+#       run: |
+#         echo "Build took ${{ steps.build.outputs.duration }}ms"
+#         echo "Build status: ${{ steps.build.outputs.status }}"
+
+name: Command Execution Tracker
+on: [push, pull_request]
+
 jobs:
-  build:
+  track-execution:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        repository: 'DaggupatiPavan/backstage-templates'
-        # token: ${ secrets.gitlab-syam }
-        ref: 'main'
-    - name: Build Application
-      uses: DaggupatiPavan/custom-action@v1
-      id: build
-      with:
-        command: 'npm run build'
-        
-    - name: Use Build Output
-      run: |
-        echo "Build took ${{ steps.build.outputs.duration }}ms"
-        echo "Build status: ${{ steps.build.outputs.status }}"
+      - uses: actions/checkout@v3
+
+      - name: Create Data Directory
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/execution-data
+          echo "EXECUTION_DATA_PATH=$GITHUB_WORKSPACE/execution-data" >> $GITHUB_ENV
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Execute Command with Tracking
+        uses: ./
+        id: execution
+        with:
+          command: 'npm install && npm run build'
+          working-directory: '.'
+          collect-metrics: 'true'
+
+      - name: Display Execution Results
+        run: |
+          echo "Execution Duration: ${{ steps.execution.outputs.duration }}ms"
+          echo "Exit Status: ${{ steps.execution.outputs.status }}"
+          echo "Data stored in: ${{ env.EXECUTION_DATA_PATH }}"
+
+      - name: Upload Execution Data
+        uses: actions/upload-artifact@v3
+        with:
+          name: execution-data
+          path: execution-data/
+          retention-days: 14
